@@ -1,0 +1,4 @@
+- insert:
+    - id: model-interruption-notifier
+      name: 'dsh-model-interruption-notifier'
+      config: {}

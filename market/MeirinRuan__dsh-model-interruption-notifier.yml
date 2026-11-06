@@ -1,0 +1,7 @@
+url: https://github.com/MeirinRuan/dsh-model-interruption-notifier
+name: MeirinRuan/dsh-model-interruption-notifier
+category: notify
+description:
+  en: Automatically continues failed DSH model runs, with optional in-app confirmation reminders.
+  zh: DSH 模型运行失败后自动继续，可切换为应用内提醒并手动确认。
+tarball: https://github.com/MeirinRuan/dsh-model-interruption-notifier/releases/latest/download/dsh-model-interruption-notifier.tgz

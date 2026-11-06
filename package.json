@@ -1,0 +1,28 @@
+{
+  "name": "dsh-model-interruption-notifier",
+  "version": "1.1.1",
+  "type": "module",
+  "license": "MIT",
+  "author": "MeirinRuan",
+  "repository": {"type": "git", "url": "git+https://github.com/MeirinRuan/dsh-model-interruption-notifier.git"},
+  "homepage": "https://github.com/MeirinRuan/dsh-model-interruption-notifier#readme",
+  "bugs": {"url": "https://github.com/MeirinRuan/dsh-model-interruption-notifier/issues"},
+  "keywords": ["dsh", "deepseek-harness", "notification", "auto-continue"],
+  "engines": {"node": "^22.19.0 || >=24.0.0", "dsh": "0.2.2-rc.1"},
+  "packageManager": "pnpm@11.28.5",
+  "description": "模型运行失败时自动继续，可在插件详情关闭并改为弹窗确认。",
+  "exports": {
+    ".": "./host.mjs",
+    "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": ["host.mjs", "projection.mjs", "lib/client.js", "cordis.patch.yml", "locale/*.json", "icon.svg", "README.md", "README.zh.md", "LICENSE", "docs/*.md"],
+  "dependencies": {"@deepseek-ai/schemastery": "^3.19.0", "zod": "^4.3.6"},
+  "devDependencies": {"esbuild": "^0.25.12", "react": "^19.0.0", "react-dom": "^19.0.0"},
+  "scripts": {"build": "node scripts/build.mjs", "test": "node --test tests/*.test.mjs", "prepack": "node scripts/build.mjs"},
+  "dsh": {
+    "bundle": {"patch": "./cordis.patch.yml"},
+    "client": {"platform": "web", "inject": ["@deepseek-ai/dsh-client-ui-session", "@deepseek-ai/dsh-client-locale", "@deepseek-ai/dsh-client-ui-settings"]}
+  }
+}

@@ -1,0 +1,10 @@
+import {createRequire} from 'node:module';
+import {mkdir, writeFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+const require = createRequire(import.meta.url);
+const {build} = require(process.env.ESBUILD_PACKAGE || 'esbuild');
+const result = await build({entryPoints: [fileURLToPath(new URL('../client.mjs', import.meta.url))], bundle: true, write: false, platform: 'browser', format: 'cjs', external: ['react'], target: ['chrome120'], charset: 'utf8'});
+const output = `window.__ModuleLoader__.load({id:'dsh-model-interruption-notifier',factory(require){const module={exports:{}};const exports=module.exports;\n${result.outputFiles[0].text}\nreturn module.exports;}});\n`;
+await mkdir(new URL('../lib/', import.meta.url), {recursive: true});
+await writeFile(new URL('../lib/client.js', import.meta.url), output);
+console.log(`Built model interruption notifier (${Buffer.byteLength(output)} bytes)`);
